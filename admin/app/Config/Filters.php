@@ -34,6 +34,8 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth'    => \App\Filters\AuthFilter::class, //auth filters for users
+        'cors' => \App\Filters\CorsFilter::class,//cors filtern
     ];
 
     /**
@@ -69,9 +71,11 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
+            'cors',
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
+            
         ],
         'after' => [
             // 'honeypot',
@@ -103,5 +107,7 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        'auth' => ['before' => ['admin/*', 'superadmin/*']],  // Apply filter to specified routes
+    ];
 }
