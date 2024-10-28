@@ -7,6 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->post('register', 'UserController::register');
+$routes->post('login', 'AuthController::login');
+$routes->post('logout', 'AuthController::logout');
 
 $routes->group('admin', ['filter' => 'auth:Admin'], function($routes) {
     $routes->get('view', 'AdminController::view');

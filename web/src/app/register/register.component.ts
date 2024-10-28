@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';  
 import { FormsModule } from '@angular/forms';    
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -21,8 +22,9 @@ export class RegisterComponent {
       next: (response) => {
         this.successMessage = 'Registration successful!';
         this.errorMessage = '';
+        this.registrationData = { username: '', email: '', password: '', role: 'User' }; // Reset form
       },
-      error: (err) => {
+      error: (err: HttpErrorResponse) => {
         this.errorMessage = 'Registration failed. Please try again.';
         this.successMessage = '';
       }

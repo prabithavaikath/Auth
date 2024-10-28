@@ -9,10 +9,9 @@ class UserModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['username', 'email', 'password', 'role'];
 
-    // Method to add a new user 
-    public function createUser($data)
+    // Function to get user by username
+    public function getUserByUsername($username)
     {
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        return $this->insert($data);
+        return $this->where('username', $username)->first();
     }
 }

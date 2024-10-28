@@ -21,8 +21,18 @@ export class LoginComponent {
   onSubmit() {
     this.apiService.login(this.credentials).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.token); // Store token if received
-        this.router.navigate(['/dashboard']);           // Redirect to dashboard
+        // Assuming the response contains both `token` and `role` properties
+        localStorage.setItem('token', response.token);       // Store the JWT token
+        localStorage.setItem('role', response.role);         // Store the user role
+
+        // Redirect based on the user's role
+        if (response.role === 'User') {
+          this.router.navigate(['/dashboard']);
+        } else if (response.role === 'Admin') {
+          this.router.navigate(['/admin-dashboard']);
+        } else if (response.role === 'SuperAdmin') {
+          this.router.navigate(['/superadmin-dashboard']);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.errorMessage = err.error?.message || 'Login failed. Please try again.';
