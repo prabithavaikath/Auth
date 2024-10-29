@@ -26,11 +26,11 @@ export class LoginComponent {
         localStorage.setItem('role', response.role);         // Store the user role
 
         // Redirect based on the user's role
-        if (response.role === 'User') {
+        if (response.role == 'User') {
           this.router.navigate(['/dashboard']);
-        } else if (response.role === 'Admin') {
+        } else if (response.role == 'Admin') {
           this.router.navigate(['/admin-dashboard']);
-        } else if (response.role === 'SuperAdmin') {
+        } else if (response.role == 'SuperAdmin') {
           this.router.navigate(['/superadmin-dashboard']);
         }
       },

@@ -23,8 +23,8 @@ class AuthController extends ResourceController
         if (!empty($user) && password_verify($password, $user['password'])) {
             // Generate JWT token
             $token = generateJWT($user);
-
-            return $this->respond(['token' => $token], 200);
+           // return $this->respond(['token' => $token], 200);
+            return $this->respond(['token' => $token,'role'=>$user['role']], 200);
         }
 
         return $this->respond(['message' => 'Invalid credentials'], 401);

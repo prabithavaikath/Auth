@@ -9,9 +9,35 @@ class UserModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['username', 'email', 'password', 'role'];
 
-    // Function to get user by username
-    public function getUserByUsername($username)
+    // Method to add a new user 
+    public function createUser($data)
     {
-        return $this->where('username', $username)->first();
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        return $this->insert($data);
     }
+
+        // Function to get user by username
+        public function getUserByUsername($username)
+        {
+            return $this->where('username', $username)->first();
+        }
+    
+    
+    
+    
+        public function getDataByRole($role)
+        {
+            if ($role == 'User') {
+                // Fetch only normal records for User role
+                return $this->where('role', 'User')->findAll(); 
+            } elseif ($role == 'Admin') {
+                
+                return $this->whereIn('role', ['Admin', 'User'])->findAll();
+            } elseif ($role == 'SuperAdmin') {
+                // Fetch all records with permission to add, delete, and update for SuperAdmin role
+                return $this->findAll(); 
+            } else {
+                return []; // Return an empty array 
+            }
+        }
 }

@@ -34,6 +34,9 @@ export class ApiService {
       headers: this.getAuthHeaders()
     });
   }
-
+  fetchDataBasedOnRole(): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.get(`${this.apiUrl}/fetch-data`, { headers });
+  }
 
 }
