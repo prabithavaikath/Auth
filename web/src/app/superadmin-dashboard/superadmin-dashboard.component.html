@@ -9,7 +9,7 @@
         <th>User Name</th>
         <th>Email</th>
         <th>Role</th>
-      
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +18,10 @@
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.role }}</td>
-       
+        <td>
+            <a href="#" (click)="editUser(user)">Edit</a> |
+            <a href="#" (click)="deleteUser(user.id)">Delete</a> 
+          </td>
       </tr>
     </tbody>
   </table>

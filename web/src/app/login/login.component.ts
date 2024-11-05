@@ -30,7 +30,7 @@ export class LoginComponent {
           this.router.navigate(['/dashboard']);
         } else if (response.role == 'Admin') {
           this.router.navigate(['/admin-dashboard']);
-        } else if (response.role == 'SuperAdmin') {
+        } else if (response.role === 'SuperAdmin') {
           this.router.navigate(['/superadmin-dashboard']);
         }
       },

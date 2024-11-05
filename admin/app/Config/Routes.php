@@ -10,6 +10,10 @@ $routes->post('register', 'UserController::register');
 $routes->post('login', 'AuthController::login');
 $routes->post('logout', 'AuthController::logout');
 $routes->get('fetch-data', 'DashboardController::fetchDataBasedOnRole');
+$routes->put('/users/(:num)', 'UserController::updateUser/$1');
+
+$routes->delete('/users/(:num)', 'UserController::deleteUser/$1');
+
 
 $routes->group('admin', ['filter' => 'auth:Admin'], function($routes) {
     $routes->get('view', 'AdminController::view');

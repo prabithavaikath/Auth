@@ -14,12 +14,15 @@ class CorsFilter implements FilterInterface
         header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
         if ($request->getMethod() === 'options') {
-            return Services::response()->setStatusCode(200);
+            exit;
         }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        // No action needed after response
+        // Add CORS headers to the response
+        // $response->setHeader('Access-Control-Allow-Origin', '*');
+        // $response->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+        // $response->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     }
 }

@@ -1,1 +1,30 @@
-<p>admin-dashboard works!</p>
+<div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+  
+  <table *ngIf="userData && userData.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userData">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+           
+            <a href="#" (click)="deleteUser(user.id)">Delete</a> 
+          </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <p *ngIf="!userData || userData.length === 0">No data available.</p>
+  

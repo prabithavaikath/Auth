@@ -11,6 +11,7 @@ class SuperAdminController extends ResourceController
     public function __construct()
     {
         $this->recordModel = new RecordModel();
+      
     }
 
     // View all records (SuperAdmin can view all)
@@ -59,12 +60,7 @@ class SuperAdminController extends ResourceController
     }
 
     // Delete a record (SuperAdmin can delete)
-    public function delete($id)
-    {
-        $deleted = $this->recordModel->deleteRecord($id);
-        if ($deleted) {
-            return $this->respond(['message' => 'Record deleted successfully'], 200);
-        }
-        return $this->respond(['message' => 'Record not found'], 404);
-    }
+
+
+    
 }

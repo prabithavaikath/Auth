@@ -40,4 +40,13 @@ class UserModel extends Model
                 return []; // Return an empty array 
             }
         }
+        // public function delete($id) {
+        //     $this->userModel->delete($id);
+        //     return $this->response->setStatusCode(204); // No Content on successful delete
+        // }
+        // public function update($id) {
+        //     $data = $this->request->getJSON();
+        //     $this->userModel->update($id, $data);
+        //     return $this->response->setJSON(['message' => 'User updated successfully']);
+        // }
 }

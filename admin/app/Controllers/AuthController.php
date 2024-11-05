@@ -36,4 +36,5 @@ class AuthController extends ResourceController
         // For a stateless JWT-based system, logout is typically handled client-side by removing the token.
         return $this->respond(['message' => 'Logged out successfully'], 200);
     }
+    
 }
